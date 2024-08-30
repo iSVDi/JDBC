@@ -26,10 +26,6 @@ public class BookRepository extends JdbcTemplate {
         connection.close();
     }
 
-    private static Connection getConnection() throws SQLException {
-        return DriverManager.getConnection(dbURL, dbUserName, dbPassword);
-    }
-
     public static BookRepository getRepository() {
         try {
             return new BookRepository();
@@ -37,6 +33,11 @@ public class BookRepository extends JdbcTemplate {
             throw new RuntimeException(e);
         }
     }
+
+    private static Connection getConnection() throws SQLException {
+        return DriverManager.getConnection(dbURL, dbUserName, dbPassword);
+    }
+
 
     public void createBook(Book newBook) throws SQLException {
         Connection connection = getConnection();
@@ -97,7 +98,8 @@ public class BookRepository extends JdbcTemplate {
         PreparedStatement preparedStatement = connection.prepareStatement(sql);
         preparedStatement.setInt(1, id);
 
-        preparedStatement.execute();statement.close();
+        preparedStatement.execute();
+        statement.close();
         connection.close();
     }
 

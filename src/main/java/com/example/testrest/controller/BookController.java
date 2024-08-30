@@ -4,7 +4,6 @@ import com.example.testrest.model.Book;
 import com.example.testrest.service.BookService;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.bind.annotation.RestController;
 
 
 @RestController
@@ -31,8 +30,6 @@ public class BookController {
     void deleteBook(@PathVariable int id) {
         service.deleteBook(id);
     }
-
-
 
 
 }

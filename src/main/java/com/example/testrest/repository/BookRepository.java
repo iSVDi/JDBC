@@ -6,9 +6,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 
 import java.sql.*;
 
-
 public class BookRepository extends JdbcTemplate {
-
     private static final String dbURL = "jdbc:h2:mem:bookDB";
     private static final String dbUserName = "root";
     private static final String dbPassword = "admin";
@@ -16,7 +14,7 @@ public class BookRepository extends JdbcTemplate {
     private BookRepository() throws SQLException {
         Connection connection = getConnection();
         Statement statement = connection.createStatement();
-        String sql = "create table books (\n" +
+        String sql = "create table if not exists books (\n" +
                 "                   id int not null primary key auto_increment,\n" +
                 "                   title varchar(100) not null,\n" +
                 "                   author varchar(100) not null,\n" +
